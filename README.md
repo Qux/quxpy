@@ -1,6 +1,5 @@
 # quxpy
-
-python3 modules for OSC users
+useful Python3 modules for media art begginers
 
 ## Requirement
 - [python-osc](https://pypi.org/project/python-osc/)
