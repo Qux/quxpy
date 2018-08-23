@@ -1,8 +1,15 @@
 # quxpy
 
-python3 libs
+python3 modules for OSC users
 
-## usage
-- check examples
-- move quxpy folder to anywhere you like
-- enjoy
+## Requirement
+- [python-osc](https://pypi.org/project/python-osc/)
+
+
+## Usage
+1. check examples
+2. move quxpy folder to anywhere you like
+3. enjoy
+
+## licence
+MIT
