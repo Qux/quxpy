@@ -1,4 +1,4 @@
-import simple_event as event
+from quxpy import simple_event as event
 import time, random
 
 def foo():

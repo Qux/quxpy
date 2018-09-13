@@ -1,4 +1,4 @@
-from osc_sender import OscSender
+from quxpy.osc_sender import OscSender
 import random, time
 
 sender = OscSender("127.0.0.1", 50000)

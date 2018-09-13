@@ -1,5 +1,5 @@
 from pythonosc import dispatcher, osc_server
-import event
+from . import event
 
 class OscReceiver:
     def __init__(self, port):

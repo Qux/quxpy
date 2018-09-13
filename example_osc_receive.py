@@ -1,4 +1,4 @@
-import osc_receiver
+from quxpy import osc_receiver
 import time
 
 def foo(*args):
