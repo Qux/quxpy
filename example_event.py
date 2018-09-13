@@ -1,4 +1,4 @@
-from quxpy import event
+import event
 import time, random
 
 def foo():

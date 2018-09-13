@@ -1,5 +1,5 @@
 from pythonosc import dispatcher, osc_server
-from quxpy import event
+import event
 
 class OscReceiver:
     def __init__(self, port):
@@ -12,3 +12,6 @@ class OscReceiver:
 
     def start(self):
         self.server.serve_forever()
+
+    def terminate(self):
+        self.server.shutdown()

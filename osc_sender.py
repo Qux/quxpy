@@ -3,10 +3,8 @@
 # python-osc ( https://pypi.org/project/python-osc/ ) is required.
 #
 
-
-
 from pythonosc import osc_message_builder, udp_client
-from quxpy.list_util import flatter
+from list_util import flatter
 
 class OscSender:
     def __init__(self, host, port):
