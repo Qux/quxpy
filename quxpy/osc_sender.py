@@ -21,3 +21,14 @@ class OscSender:
         msg = msg.build()
 
         self.client.send(msg)
+
+
+osc_sender = None
+
+def setup(host, port):
+    global osc_sender
+    osc_sender = OscSender(host, port)
+
+def send(address, *args):
+    global osc_sender
+    osc_sender.send(address, args)

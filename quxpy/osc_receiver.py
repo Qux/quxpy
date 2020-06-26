@@ -15,3 +15,22 @@ class OscReceiver:
 
     def terminate(self):
         self.server.shutdown()
+
+
+osc_receiver = None
+
+def setup(port):
+    global osc_receiver
+    osc_receiver = OscReceiver(port)
+
+def start():
+    global osc_receiver
+    osc_receiver.start()
+
+def add(adr, func):
+    global osc_receiver
+    osc_receiver.add(adr, func)
+
+def terminate():
+    global osc_receiver
+    osc_receiver.terminate()

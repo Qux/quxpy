@@ -8,8 +8,13 @@ def foo(*args):
 def bar(*args):
     print(args)
 
-receiver = osc_receiver.OscReceiver(50001)
-receiver.add("/bar", bar)
-receiver.add("/foo", foo)
 
-receiver.start()
+try:
+    osc_receiver.setup(50001)   # set the listen port
+    osc_receiver.add("/bar", bar)   # combine the OSC address and function 
+    osc_receiver.add("/foo", foo)   # add another
+
+    osc_receiver.start()    # begin server
+
+except KeyboardInterrupt:
+    osc_receiver.terminate()
