@@ -9,7 +9,7 @@ def add(event_name, func):
 
 
 def bang(event_name, *args):
-    global events, jobs
+    global events
     thread = threading.Thread(target=events[event_name],args=args)
     threads.append(thread)
     thread.start()
@@ -18,4 +18,4 @@ def bang(event_name, *args):
 def close():
     for thread in threads:
         thread.join()
-    print("All threads cleared.")
+

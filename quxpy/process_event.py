@@ -20,4 +20,4 @@ def bang(event_name, *args):
 def close():
     for job in jobs:
         job.join()
-    print("All process cleared.")
+    

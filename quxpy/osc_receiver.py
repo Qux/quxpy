@@ -1,10 +1,10 @@
 from pythonosc import dispatcher, osc_server
-from . import event
+from . import thread_event as event
 
 class OscReceiver:
     def __init__(self, port):
         self.dispatcher = dispatcher.Dispatcher()
-        self.server = osc_server.ForkingOSCUDPServer(("0.0.0.0", port), self.dispatcher)
+        self.server = osc_server.ThreadingOSCUDPServer(("0.0.0.0", port), self.dispatcher)
 
     def add(self, adr, func):
         event.add(adr, func)
@@ -34,3 +34,4 @@ def add(adr, func):
 def terminate():
     global receiver
     receiver.terminate()
+    event.close()
