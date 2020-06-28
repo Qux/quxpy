@@ -2,7 +2,9 @@ import threading
 import time
 
 events = []
+jobs = []
 thread = None
+use_thread = False
 
 def add(func, interval):
     event = {
@@ -13,7 +15,6 @@ def add(func, interval):
 
     events.append(event)
 
-
 def update():    
     while True:        
         for event in events:
@@ -21,13 +22,27 @@ def update():
             diff = now - event["prev_time"]
             
             if event["interval"] < diff:
-                event["func"]()
+                if use_thread:
+                    job = threading.Thread(target=event["func"])
+                    job.start()
+                    jobs.append(job)
+                else:
+                    event["func"]()
                 event["prev_time"] = now
 
-def start():    
+def start(use_thread_for_each_event=False):    
+    now = time.time()
+    use_thread = use_thread_for_each_event
+    for event in events:
+        event["prev_time"] = now
     thread = threading.Thread(target=update)
     thread.start()
 
+
+
 def terminate():
-    thread.terminate()
+    if use_thread:
+        for job in jobs:            
+            job.join()
+    
     thread.join()    
