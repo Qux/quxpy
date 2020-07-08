@@ -16,5 +16,9 @@ try:
 
     osc_receiver.start()    # begin server
 
+    while True: # main loop
+        print("sushi")
+        time.sleep(5.0)
+
 except KeyboardInterrupt:
     osc_receiver.terminate()
