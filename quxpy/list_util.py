@@ -1,5 +1,5 @@
 
-def flatter(target_list):
+def flatten(target_list):
     flat_list = []
     buf = [target_list]
 

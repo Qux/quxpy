@@ -4,7 +4,7 @@
 #
 
 from pythonosc import osc_message_builder, udp_client
-from .list_util import flatter
+from .list_util import flatten
 
 class OscSender:
     def __init__(self, host, port):
@@ -13,7 +13,7 @@ class OscSender:
     def send(self, address, *args):
         msg = osc_message_builder.OscMessageBuilder(address=address)
 
-        args = flatter(args)
+        args = flatten(args)
 
         for arg in args:
             msg.add_arg(arg)
