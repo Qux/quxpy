@@ -1,3 +1,4 @@
+from asyncore import poll
 import threading
 import multiprocessing
 import time
@@ -6,6 +7,8 @@ from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
 events = []
 metro_loop = None
 executor = None
+
+__poll_interval = 0.001
 
 def add(func, interval):
     event = {
@@ -26,14 +29,16 @@ def update():
             event["prev_time"] = now
 
 def update_loop():    
-    while True:
+    global __poll_interval
+    while True:    
         try:      
             update()
+            time.sleep(__poll_interval)
         except Exception:
             break
 
-def start(use_process=False, num_processes=None, reset_timer=True):  
-    global executor
+def start(use_process=False, num_processes=None, reset_timer=True, poll_interval=0.0):  
+    global executor, __poll_interval
     if use_process:
         executor = ProcessPoolExecutor(max_workers=num_processes)
     else:
@@ -43,6 +48,9 @@ def start(use_process=False, num_processes=None, reset_timer=True):
         now = time.time()
         for event in events:
             event["prev_time"] = now
+
+    if 0.0 < poll_interval:
+        __poll_interval = poll_interval
     
     global metro_loop
     metro_loop = threading.Thread(target=update_loop)
