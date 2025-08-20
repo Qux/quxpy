@@ -1,4 +1,3 @@
-from asyncore import poll
 import threading
 import multiprocessing
 import time
